@@ -2,6 +2,8 @@
 
 **Consent-first, multilingual voice-cloning studio.** Upload 10–30 seconds of a speaker's voice (with their signed consent), and synthesize speech in 23+ languages — in that same voice. Built on the open-source [Chatterbox-TTS](https://github.com/resemble-ai/chatterbox) engine.
 
+🔗 **Live demo:** [polyvoice-three.vercel.app](https://polyvoice-three.vercel.app) — the full UI is interactive; live generation requires a running engine (see [Run the engine on Colab GPU](#run-the-engine-on-colab-gpu-recommended)).
+
 ## Demo
 
 One English reference sample → the **same voice speaking five languages**, generated on a GPU in ~4 seconds each:
