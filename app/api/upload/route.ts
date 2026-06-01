@@ -10,10 +10,21 @@ export async function POST(request: Request) {
   const upstream = new FormData();
   upstream.append("files", file, file.name);
 
-  const res = await fetch(`${CHATTERBOX_URL}/upload_reference`, {
-    method: "POST",
-    body: upstream,
-  });
+  let res: Response;
+  try {
+    res = await fetch(`${CHATTERBOX_URL}/upload_reference`, {
+      method: "POST",
+      body: upstream,
+    });
+  } catch {
+    return Response.json(
+      {
+        error:
+          "Voice engine is not reachable. Point CHATTERBOX_URL at a running engine — see the README.",
+      },
+      { status: 503 },
+    );
+  }
 
   const body = await res.text();
   return new Response(body, {

@@ -13,16 +13,27 @@ export async function POST(request: Request) {
     );
   }
 
-  const res = await fetch(`${CHATTERBOX_URL}/tts`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      output_format: "wav",
-      split_text: true,
-      chunk_size: 200,
-      ...body,
-    }),
-  });
+  let res: Response;
+  try {
+    res = await fetch(`${CHATTERBOX_URL}/tts`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        output_format: "wav",
+        split_text: true,
+        chunk_size: 200,
+        ...body,
+      }),
+    });
+  } catch {
+    return Response.json(
+      {
+        error:
+          "Voice engine is not reachable. Point CHATTERBOX_URL at a running engine — see the README.",
+      },
+      { status: 503 },
+    );
+  }
 
   if (!res.ok || !res.body) {
     const text = await res.text();
