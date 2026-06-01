@@ -14,9 +14,7 @@ One English reference sample → the **same voice speaking five languages**, gen
 | 🇮🇳 Hindi | [`polyvoice_hi.wav`](kaggle_kernel/audio/polyvoice_hi.wav) |
 | 🇯🇵 Japanese | [`polyvoice_ja.wav`](kaggle_kernel/audio/polyvoice_ja.wav) |
 
-<!-- TODO: add a UI screenshot at docs/screenshot.png and uncomment:
-![PolyVoice UI](docs/screenshot.png)
--->
+![PolyVoice UI — Step 3, generate cloned speech in 23+ languages](docs/screenshot.png)
 
 ## Why this exists
 
