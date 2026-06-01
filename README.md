@@ -2,6 +2,22 @@
 
 **Consent-first, multilingual voice-cloning studio.** Upload 10–30 seconds of a speaker's voice (with their signed consent), and synthesize speech in 23+ languages — in that same voice. Built on the open-source [Chatterbox-TTS](https://github.com/resemble-ai/chatterbox) engine.
 
+## Demo
+
+One English reference sample → the **same voice speaking five languages**, generated on a GPU in ~4 seconds each:
+
+| Language | Sample |
+| --- | --- |
+| 🇬🇧 English | [`polyvoice_en.wav`](kaggle_kernel/audio/polyvoice_en.wav) |
+| 🇪🇸 Spanish | [`polyvoice_es.wav`](kaggle_kernel/audio/polyvoice_es.wav) |
+| 🇫🇷 French | [`polyvoice_fr.wav`](kaggle_kernel/audio/polyvoice_fr.wav) |
+| 🇮🇳 Hindi | [`polyvoice_hi.wav`](kaggle_kernel/audio/polyvoice_hi.wav) |
+| 🇯🇵 Japanese | [`polyvoice_ja.wav`](kaggle_kernel/audio/polyvoice_ja.wav) |
+
+<!-- TODO: add a UI screenshot at docs/screenshot.png and uncomment:
+![PolyVoice UI](docs/screenshot.png)
+-->
+
 ## Why this exists
 
 Voice cloning is now production-quality and free. The hard part isn't the model — it's:
@@ -34,6 +50,7 @@ The Next.js layer owns the consent flow and product UX; the Python server owns i
 - **Three-step flow.** Sign consent → upload sample → generate.
 - **Digital consent record** persisted to `localStorage`, with revocation.
 - **23+ languages** (English, Spanish, French, German, Hindi, Mandarin, Japanese, Arabic, …).
+- **ElevenLabs-style voice settings.** Tune expressiveness, stability, temperature, and speed, with Natural / Expressive / Stable presets.
 - **Real-time engine status** (heartbeat every 5s).
 - **In-browser audio history** with WAV download.
 
@@ -64,6 +81,11 @@ cd Chatterbox-TTS-Server-windows-easyInstallation
 ```
 
 First run downloads ~3 GB of model weights from Hugging Face. Subsequent runs are cached.
+
+> **Windows notes (learned the hard way):**
+> - Use the **`venv310`** environment, *not* `venv` — only `venv310` has the `chatterbox` package installed.
+> - Make sure `hf_transfer` is installed in it (`.\venv310\Scripts\python.exe -m pip install hf_transfer`), or the model fails to load on startup.
+> - In `.env.local`, point at **`http://127.0.0.1:8004`**, *not* `http://localhost:8004` — Node's `fetch` resolves `localhost` to IPv6 (`::1`) while the engine binds IPv4, which silently times out.
 
 ## Start the Next.js app
 
