@@ -1,5 +1,8 @@
 import { CHATTERBOX_URL, type TTSRequest } from "@/lib/chatterbox";
 
+// Allow time for the GPU engine to cold-start + generate before Vercel cuts off.
+export const maxDuration = 60;
+
 export async function POST(request: Request) {
   const body = (await request.json()) as TTSRequest;
 

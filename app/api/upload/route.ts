@@ -1,5 +1,7 @@
 import { CHATTERBOX_URL } from "@/lib/chatterbox";
 
+export const maxDuration = 60;
+
 export async function POST(request: Request) {
   const incoming = await request.formData();
   const file = incoming.get("file");

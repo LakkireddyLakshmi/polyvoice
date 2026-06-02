@@ -43,8 +43,14 @@ next-env.d.ts
 # polyvoice runtime + local artifacts
 dev-server.log
 *.log
+cloudflared.exe
 
 # downloaded engine clones / kernel outputs (large, regenerable — keep the demo .wav clips at kaggle_kernel/audio/ root)
 /kaggle_kernel/output/
 /kaggle_kernel/output_v5/
 /kaggle_kernel/audio/engine/
+
+# modal
+modal_engine/deploy.log
+modal_engine/deploy.err
+modal_engine/*.err
